@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendEmailMailable;
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
     public function sendMail(Request $request)
     {
-        Mail::to('mohammadsabbir044@gmail.com')->send(new SendEmailMailable());
+        for ($i = 0; $i < 10; $i++){
 
-        $result = "mail sent to user";
+//            $job = (new SendEmailJob($i))->delay(Carbon::now()->addSeconds(10));
+            $job = new SendEmailJob($i);
+
+            $this->dispatch($job);
+        }
+
+        $result = "mail sent to 10 users";
 
         return view('dashboard', compact('result'));
     }

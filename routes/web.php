@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/send-mail', [MailController::class, 'sendMail'])->middleware(['auth']);
+Route::get('/logs', [LogViewerController::class, 'index']);
 
 require __DIR__.'/auth.php';
