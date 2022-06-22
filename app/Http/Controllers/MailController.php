@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendEmailJob;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class MailController extends Controller
 {
     public function sendMail(Request $request)
     {
-        for ($i = 0; $i < 10; $i++){
+        $stores = Store::query()->get();
 
-//            $job = (new SendEmailJob($i))->delay(Carbon::now()->addSeconds(10));
-            $job = new SendEmailJob($i);
+        foreach($stores as $store){
+            $job = new SendEmailJob($store);
 
             $this->dispatch($job);
         }
 
-        $result = "mail sent to 10 users";
+        $result = "mail sent to All stores";
 
         return view('dashboard', compact('result'));
     }

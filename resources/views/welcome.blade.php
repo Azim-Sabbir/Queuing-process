@@ -21,7 +21,11 @@
         </style>
     </head>
     <body class="antialiased">
-    <h1>This is mail no {{ $emailNumber }}</h1>
+    <h1>This is mail no {{ $orderDetails->email }}</h1>
+    <h2>Name {{ $orderDetails->name }}</h2>
+    <h1>Domain {{ $orderDetails->domain }}</h1>
+    <h1>Status {{ $orderDetails->status }}</h1>
+    <h1>Plan {{ $orderDetails->plan }}</h1>
 {{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
 {{--            @if (Route::has('login'))--}}
 {{--                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">--}}

@@ -11,17 +11,16 @@ class SendEmailMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $emailNumber;
+    private $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($emailNumber)
+    public function __construct($order)
     {
-        //
-        $this->emailNumber = $emailNumber;
+        $this->order = $order;
     }
 
     /**
@@ -31,7 +30,7 @@ class SendEmailMailable extends Mailable
      */
     public function build()
     {
-        $emailNumber = $this->emailNumber;
-        return $this->view('welcome', compact('emailNumber'));
+        $orderDetails = $this->order;
+        return $this->view('welcome', compact('orderDetails'));
     }
 }
